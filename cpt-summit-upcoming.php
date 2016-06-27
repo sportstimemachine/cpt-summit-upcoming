@@ -131,6 +131,13 @@ if ( ! class_exists( 'SportsTM_Summit_Upcoming' ) ) {
 
         }
 
+        /**
+         * Register our Post Type
+         * 
+         * @access      public
+         * @since       1.0.0
+         * @return      void
+         */
         public function register_post_type() {
             
             if ( strpos( $this->icon, 'dashicons' ) === false ) {
