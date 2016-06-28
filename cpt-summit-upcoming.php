@@ -47,7 +47,7 @@ if ( ! class_exists( 'SportsTM_Summit_Upcoming' ) ) {
          * @var         Menu Icon for our CPT
          * @since       1.0.0
          */
-        private $icon = '/images/calendar.png';
+        private $icon = '/images/cpt-summit-upcoming.png';
         
         /**
          * @var         Does our CPT use a Single Template?
@@ -141,7 +141,17 @@ if ( ! class_exists( 'SportsTM_Summit_Upcoming' ) ) {
         public function register_post_type() {
             
             if ( strpos( $this->icon, 'dashicons' ) === false ) {
-                $this->icon = get_stylesheet_directory_uri() . $this->icon;
+                
+                if ( file_exists( get_stylesheet_directory() . $this->icon ) ) {
+                    $this->icon = get_stylesheet_directory_uri() . $this->icon;
+                }
+                else if ( file_exists( get_template_directory() . $this->icon ) ) {
+                    $this->icon = get_template_directory_uri() . $this->icon;
+                }
+                else {
+                    $this->icon = plugins_url( $this->icon, __FILE__ );
+                }
+                
             }
             
             $labels = array(
